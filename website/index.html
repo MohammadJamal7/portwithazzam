@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>شركة العزام للاستيراد والتصدير</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico">
+</head>
+<body>
+  <header>
+    <h1>شركة العزام</h1>
+    <h2>الاستيراد والتصدير</h2>
+    <nav>
+      <a href="#home">الرئيسية</a>
+      <a href="#services">الخدمات</a>
+      <a href="#about">عن الشركة</a>
+      <a href="#contact">التواصل</a>
+      <a href="#faq">الأسئلة الشائعة</a>
+      <a href="#whyus">لماذا نحن؟</a>
+    </nav>
+  </header>
+  <main>
+    <section id="home">
+      <h3>مرحباً بكم في شركة العزام</h3>
+      <p>نقدم خدمات استيراد وتصدير احترافية وموثوقة لعملائنا في جميع أنحاء العالم.</p>
+    </section>
+    <section id="services">
+      <h3>خدماتنا</h3>
+      <div class="card-grid">
+        <div class="card">
+          <span class="icon">🚢</span>
+          <h4>الشحن البحري</h4>
+          <p>خدمات شحن بحري دولية آمنة وفعالة.</p>
+        </div>
+        <div class="card">
+          <span class="icon">✈️</span>
+          <h4>الشحن الجوي</h4>
+          <p>شحن جوي سريع للبضائع حول العالم.</p>
+        </div>
+        <div class="card">
+          <span class="icon">🚚</span>
+          <h4>الشحن البري</h4>
+          <p>نقل بري موثوق للبضائع داخل وخارج البلاد.</p>
+        </div>
+        <div class="card">
+          <span class="icon">📦</span>
+          <h4>التخليص الجمركي</h4>
+          <p>تسهيل إجراءات التخليص الجمركي بسرعة وكفاءة.</p>
+        </div>
+      </div>
+    </section>
+    <section id="about">
+      <h3>عن الشركة</h3>
+      <p>تأسست شركة العزام بهدف توفير خدمات استيراد وتصدير متميزة وموثوقة. نتمتع بخبرة طويلة في مجال التجارة الخارجية وعلاقات قوية مع الموردين والعملاء حول العالم.</p>
+      <ul>
+        <li>الأمانة والثقة</li>
+        <li>الجودة والاحترافية</li>
+        <li>الالتزام بالمواعيد</li>
+        <li>خدمة العملاء الممتازة</li>
+      </ul>
+      <button onclick="showTerms()">شروط الخدمة</button>
+      <a href="https://azzamimexport.netlify.app/privacy_policy" class="button-link" target="_blank">سياسة الخصوصية</a>
+    </section>
+    <section id="whyus">
+      <h3>لماذا نحن؟</h3>
+      <ul>
+        <li>خبرة واسعة في مجال الاستيراد والتصدير</li>
+        <li>شبكة علاقات قوية مع الموردين والعملاء</li>
+        <li>خدمة عملاء متميزة على مدار الساعة</li>
+        <li>أسعار تنافسية وجودة عالية</li>
+      </ul>
+    </section>
+    <section id="faq">
+      <h3>الأسئلة الشائعة</h3>
+      <details>
+        <summary>كيف أطلب خدمة استيراد؟</summary>
+        <p>يمكنك التواصل معنا عبر نموذج التواصل أو عبر واتساب.</p>
+      </details>
+      <details>
+        <summary>ما هي طرق الدفع المتاحة؟</summary>
+        <p>نقبل التحويل البنكي والدفع النقدي.</p>
+      </details>
+      <details>
+        <summary>هل تقدمون خدمات استشارية؟</summary>
+        <p>نعم، نقدم استشارات مجانية لعملائنا.</p>
+      </details>
+    </section>
+    <section id="contact">
+      <h3>التواصل معنا</h3>
+      <form id="contactForm">
+        <label for="name">الاسم:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">البريد الإلكتروني:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="message">رسالتك:</label>
+        <textarea id="message" name="message" required></textarea>
+        <button type="submit">إرسال</button>
+      </form>
+      <div class="contact-info">
+        <p><strong>الهاتف:</strong> <a href="tel:+962778622461">+962778622461</a></p>
+        <p><strong>واتساب:</strong> <a href="https://wa.me/962778622461" target="_blank">تواصل عبر واتساب</a></p>
+        <p><strong>البريد الإلكتروني:</strong> <a href="mailto:azzamsuleimanimportandexport@outlook.com">azzamsuleimanimportandexport@outlook.com</a></p>
+        <p><strong>العنوان:</strong> شارع الهاشمي، إربد - 21110</p>
+      </div>
+    </section>
+    <div id="modal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>جميع الحقوق محفوظة &copy; شركة العزام للاستيراد والتصدير 2025 | <a href="https://azzamimexport.netlify.app/privacy_policy" style="color:#fff;text-decoration:underline;" target="_blank">سياسة الخصوصية</a></p>
+    <button onclick="shareSite()">مشاركة الموقع</button>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

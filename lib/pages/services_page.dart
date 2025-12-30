@@ -9,8 +9,14 @@ class ServicesPage extends StatelessWidget {
     final services = [
       {
         'title': 'الاستيراد',
-        'icon': Icons.import_export,
-        'description': 'خدمات استيراد متخصصة من أفضل الأسواق العالمية',
+        'icon': Icons.shopping_cart_outlined,
+        'description': 'خدمات استيراد متخصصة من أفضل الأسواق العالمية مع متابعة كاملة حتى وصول البضائع إلى باب العميل.',
+        'details': 'نساعدك في استيراد المنتجات من مصادر موثوقة حول العالم، مع توفير الاستشارات الجمركية واللوجستية، وضمان أفضل الأسعار والجودة.',
+        'useCases': [
+          'استيراد مواد خام أو بضائع بالجملة',
+          'البحث عن موردين جدد',
+          'تخليص جمركي للبضائع المستوردة',
+        ],
         'extra': [
           {'name': 'origin_country', 'label': 'بلد المنشأ', 'type': 'text', 'required': true},
           {'name': 'product_type', 'label': 'نوع المنتج', 'type': 'text'},
@@ -19,8 +25,14 @@ class ServicesPage extends StatelessWidget {
       },
       {
         'title': 'التصدير',
-        'icon': Icons.local_shipping,
-        'description': 'تصدير منتجات محلية بجودة عالية وأسعار تنافسية',
+        'icon': Icons.flight_takeoff,
+        'description': 'تصدير منتجات محلية بجودة عالية وأسعار تنافسية إلى الأسواق العالمية.',
+        'details': 'نقدم خدمات تصدير متكاملة من التعبئة والتغليف إلى الشحن والتخليص، مع دعم كامل في جميع مراحل العملية.',
+        'useCases': [
+          'تصدير منتجات زراعية أو صناعية',
+          'الوصول إلى أسواق جديدة',
+          'إعداد الوثائق والشهادات المطلوبة للتصدير',
+        ],
         'extra': [
           {'name': 'destination_country', 'label': 'بلد الوجهة', 'type': 'text', 'required': true},
           {'name': 'product_details', 'label': 'تفاصيل المنتج', 'type': 'multiline'},
@@ -29,8 +41,14 @@ class ServicesPage extends StatelessWidget {
       },
       {
         'title': 'التخليص الجمركي',
-        'icon': Icons.verified_user,
-        'description': 'خدمات تخليص جمركي سريعة وموثوقة',
+        'icon': Icons.assignment_turned_in,
+        'description': 'خدمات تخليص جمركي سريعة وموثوقة لجميع أنواع البضائع.',
+        'details': 'نتولى جميع إجراءات التخليص الجمركي، من إعداد المستندات إلى دفع الرسوم، لتسهيل دخول أو خروج بضائعك من وإلى الأردن.',
+        'useCases': [
+          'تخليص شحنات مستوردة أو مصدرة',
+          'استشارات حول الرسوم الجمركية',
+          'تسريع إجراءات التخليص',
+        ],
         'extra': [
           {'name': 'hs_code', 'label': 'رمز البند الجمركي (HS Code)', 'type': 'text', 'required': true},
           {'name': 'invoice_value', 'label': 'قيمة الفاتورة', 'type': 'text'},
@@ -39,8 +57,14 @@ class ServicesPage extends StatelessWidget {
       },
       {
         'title': 'الشحن واللوجستيات',
-        'icon': Icons.directions_boat,
-        'description': 'حلول شحن وتوزيع متكاملة داخل وخارج الأردن',
+        'icon': Icons.local_shipping_outlined,
+        'description': 'حلول شحن وتوزيع متكاملة داخل وخارج الأردن، برّاً وبحراً وجوّاً.',
+        'details': 'نرتب لك الشحن الداخلي والدولي، مع تتبع الشحنات، وتقديم أفضل الخيارات من حيث الوقت والتكلفة.',
+        'useCases': [
+          'شحن بضائع من وإلى الأردن',
+          'توزيع محلي للشركات',
+          'خدمات شحن سريع أو مبرد',
+        ],
         'extra': [
           {'name': 'weight', 'label': 'الوزن (كجم)', 'type': 'text', 'required': true},
           {'name': 'dimensions', 'label': 'الأبعاد (طولxعرضxارتفاع)', 'type': 'text'},
@@ -50,7 +74,13 @@ class ServicesPage extends StatelessWidget {
       {
         'title': 'الاستشارات التجارية',
         'icon': Icons.support_agent,
-        'description': 'استشارات متخصصة لتطوير عملك التجاري',
+        'description': 'استشارات متخصصة لتطوير عملك التجاري وزيادة فرص النجاح.',
+        'details': 'نقدم نصائح عملية حول التصدير والاستيراد، اختيار الأسواق، وتطوير العمليات التجارية.',
+        'useCases': [
+          'دراسة جدوى مشاريع تجارية',
+          'تحليل الأسواق الخارجية',
+          'تطوير استراتيجيات التصدير',
+        ],
         'extra': [
           {'name': 'preferred_date', 'label': 'الموعد المفضل للاستشارة', 'type': 'text'},
           {'name': 'company_size', 'label': 'حجم الشركة', 'type': 'text'},
@@ -58,8 +88,14 @@ class ServicesPage extends StatelessWidget {
       },
       {
         'title': 'إدارة المخزون',
-        'icon': Icons.inventory_2,
-        'description': 'خدمات تخزين وإدارة مخزون احترافية',
+        'icon': Icons.warehouse,
+        'description': 'خدمات تخزين وإدارة مخزون احترافية مع تقارير دورية.',
+        'details': 'نوفر حلول تخزين آمنة ومرنة، مع إدارة دقيقة للمخزون وتقارير مخصصة حسب احتياجك.',
+        'useCases': [
+          'تخزين بضائع لفترات قصيرة أو طويلة',
+          'إدارة مخزون الشركات الصغيرة والمتوسطة',
+          'تقارير دورية عن حالة المخزون',
+        ],
         'extra': [
           {'name': 'storage_volume', 'label': 'حجم التخزين المطلوب', 'type': 'text', 'required': true},
           {'name': 'duration', 'label': 'المدة (بالأيام أو الأشهر)', 'type': 'text'},
@@ -102,13 +138,15 @@ class ServicesPage extends StatelessWidget {
                       builder: (_) => ServiceRequestPage(
                         serviceTitle: service['title'] as String,
                         extraFields: extra,
+                        description: service['description'] as String?,
+                        details: service['details'] as String?,
+                        useCases: service['useCases'] as List<String>?,
                       ),
                     ));
                   },
                   child: ServiceCard(
                     title: service['title'] as String,
                     icon: service['icon'] as IconData,
-                    description: service['description'] as String,
                   ),
                 );
               },
@@ -123,13 +161,11 @@ class ServicesPage extends StatelessWidget {
 class ServiceCard extends StatelessWidget {
   final String title;
   final IconData icon;
-  final String description;
 
   const ServiceCard({
     super.key,
     required this.title,
     required this.icon,
-    required this.description,
   });
 
   @override
@@ -148,7 +184,8 @@ class ServiceCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Icon(
                 icon,
@@ -160,20 +197,9 @@ class ServiceCard extends StatelessWidget {
                 title,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                  fontSize: 14,
+                  fontSize: 15,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF1A3A52),
-                ),
-              ),
-              const SizedBox(height: 6),
-              Expanded(
-                child: Text(
-                  description,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: Colors.black87,
-                  ),
                 ),
               ),
             ],

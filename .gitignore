@@ -1,3 +1,6 @@
+# Keystore and signing config
+android/azzamo-release-key.jks
+android/key.properties
 # Miscellaneous
 *.class
 *.log

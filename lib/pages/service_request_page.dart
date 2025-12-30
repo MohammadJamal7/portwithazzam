@@ -4,11 +4,17 @@ import 'package:url_launcher/url_launcher.dart';
 class ServiceRequestPage extends StatefulWidget {
   final String serviceTitle;
   final List<Map<String, dynamic>> extraFields;
+  final String? description;
+  final String? details;
+  final List<String>? useCases;
 
   const ServiceRequestPage({
     super.key,
     required this.serviceTitle,
     this.extraFields = const [],
+    this.description,
+    this.details,
+    this.useCases,
   });
 
   @override
@@ -137,6 +143,42 @@ class _ServiceRequestPageState extends State<ServiceRequestPage> {
           key: _formKey,
           child: ListView(
             children: [
+              if (widget.description != null || widget.details != null || (widget.useCases != null && widget.useCases!.isNotEmpty))
+                Card(
+                  color: const Color(0xFFF7F7F7),
+                  margin: const EdgeInsets.only(bottom: 18),
+                  child: Padding(
+                    padding: const EdgeInsets.all(14),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (widget.description != null)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 8.0),
+                            child: Text(widget.description!, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                          ),
+                        if (widget.details != null)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 8.0),
+                            child: Text(widget.details!, style: const TextStyle(fontSize: 13)),
+                          ),
+                        if (widget.useCases != null && widget.useCases!.isNotEmpty)
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text('أمثلة على الاستخدام:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                              ...widget.useCases!.map((e) => Row(
+                                children: [
+                                  const Text('• ', style: TextStyle(fontSize: 14)),
+                                  Expanded(child: Text(e, style: const TextStyle(fontSize: 12))),
+                                ],
+                              )),
+                            ],
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
               TextFormField(
                 controller: _nameCtrl,
                 textAlign: TextAlign.right,

@@ -3,6 +3,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:shared_preferences/shared_preferences.dart' as sp;
 import 'pages/services_page.dart';
+import 'pages/home_page.dart';
+import 'pages/about_page.dart';
+import 'pages/contact_page.dart';
+import 'pages/terms_page.dart';
+import 'pages/faq_page.dart';
+import 'pages/why_choose_us_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -98,7 +104,6 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       appBar: AppBar(
         title: Column(
           mainAxisSize: MainAxisSize.min,
@@ -111,10 +116,28 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: const Color(0xFF1A3A52),
         foregroundColor: Colors.white,
         elevation: 4,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.question_answer),
+            tooltip: 'الأسئلة الشائعة',
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => const FAQPage()));
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.share),
+            tooltip: 'مشاركة التطبيق',
+            onPressed: () async {
+              const appLink = 'https://azzam-company.com/app';
+              final text = 'جرب تطبيق شركة العزام للاستيراد والتصدير:\n$appLink';
+              await launchUrl(Uri.parse('https://wa.me/?text=${Uri.encodeComponent(text)}'), mode: LaunchMode.externalApplication);
+            },
+          ),
+        ],
       ),
       body: IndexedStack(
         index: _currentPageIndex,
-        children: const [
+        children: [
           HomePage(),
           ServicesPage(),
           AboutPage(),
@@ -132,7 +155,7 @@ class _MainPageState extends State<MainPage> {
         selectedItemColor: const Color(0xFFD4A574),
         unselectedItemColor: Colors.white70,
         type: BottomNavigationBarType.fixed,
-        items: const [
+        items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'الرئيسية',
@@ -155,121 +178,6 @@ class _MainPageState extends State<MainPage> {
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(24),
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Color(0xFF1A3A52), Color(0xFF2D5A7B)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
-              child: Column(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Image.asset(
-                      'assets/icon.png',
-                      width: 80,
-                      height: 80,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'شركة العزام',
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'متخصصة في الاستيراد والتصدير',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Color(0xFFD4A574),
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'أهلاً وسهلاً بك',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF1A3A52),
-                    ),
-                    textAlign: TextAlign.right,
-                  ),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'شركة العزام هي شركة متخصصة في مجال الاستيراد والتصدير في الأردن. نقدم خدمات احترافية وذات جودة عالية لتلبية احتياجات عملائنا من الشركات والأفراد.',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black87,
-                      height: 1.6,
-                    ),
-                    textAlign: TextAlign.right,
-                  ),
-                  const SizedBox(height: 24),
-                  Card(
-                    elevation: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Icon(Icons.stars, color: Color(0xFFD4A574), size: 32),
-                          SizedBox(height: 8),
-                          Text(
-                            'رؤيتنا',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF1A3A52),
-                            ),
-                          ),
-                          SizedBox(height: 8),
-                          Text(
-                            'أن نكون الشركة الموثوقة والمفضلة في مجال الاستيراد والتصدير بخدمات متميزة وأسعار تنافسية.',
-                            textAlign: TextAlign.right,
-                            style: TextStyle(fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 // Services page is moved to: lib/pages/services_page.dart
 // Existing implementation extracted to keep main.dart minimal.
 
@@ -284,70 +192,152 @@ class AboutPage extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(24),
-            decoration: const BoxDecoration(
-              color: Color(0xFF1A3A52),
-            ),
-            child: const Text(
-              'من نحن',
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(24),
+              decoration: const BoxDecoration(
+                color: Color(0xFF1A3A52),
               ),
-              textAlign: TextAlign.center,
+              child: const Text(
+                'من نحن',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 8),
-                const Text(
-                  'عن شركة العزام',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF1A3A52),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton.icon(
+                      icon: const Icon(Icons.star, color: Color(0xFFD4A574)),
+                      label: const Text('لماذا نحن؟'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF1A3A52),
+                        foregroundColor: Colors.white,
+                        textStyle: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_) => const WhyChooseUsPage()));
+                      },
+                    ),
                   ),
-                  textAlign: TextAlign.right,
-                ),
-                const SizedBox(height: 16),
-                const Text(
-                  'تأسست شركة العزام بهدف توفير خدمات استيراد وتصدير متميزة وموثوقة. نتمتع بخبرة طويلة في مجال التجارة الخارجية وعلاقات قوية مع الموردين والعملاء حول العالم.',
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.black87,
-                    height: 1.6,
+                  const SizedBox(height: 16),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'عن شركة العزام',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF1A3A52),
+                    ),
+                    textAlign: TextAlign.right,
                   ),
-                  textAlign: TextAlign.right,
-                ),
-                const SizedBox(height: 24),
-                const Text(
-                  'قيمنا',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF1A3A52),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'تأسست شركة العزام بهدف توفير خدمات استيراد وتصدير متميزة وموثوقة. نتمتع بخبرة طويلة في مجال التجارة الخارجية وعلاقات قوية مع الموردين والعملاء حول العالم.',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.black87,
+                      height: 1.6,
+                    ),
+                    textAlign: TextAlign.right,
                   ),
-                  textAlign: TextAlign.right,
-                ),
-                const SizedBox(height: 12),
-                _buildValueItem('الأمانة والثقة', Icons.verified),
-                _buildValueItem('الجودة والاحترافية', Icons.star),
-                _buildValueItem('الالتزام بالمواعيد', Icons.schedule),
-                _buildValueItem('خدمة العملاء الممتازة', Icons.handshake),
-              ],
+                  const SizedBox(height: 24),
+
+                  // Company info card
+                  Card(
+                    elevation: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'معلومات الشركة',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF1A3A52),
+                            ),
+                            textAlign: TextAlign.right,
+                          ),
+                          const SizedBox(height: 12),
+                          _buildInfoRow(Icons.business, 'الاسم', 'شركة العزام للاستيراد والتصدير'),
+                          const SizedBox(height: 8),
+                          _buildInfoRow(Icons.confirmation_number, 'رقم السجل التجاري', 'غير متوفر - يرجى التحديث'),
+                          const SizedBox(height: 8),
+                          _buildInfoRow(Icons.location_on, 'العنوان', 'شارع الهاشمي، إربد - 21110'),
+                          const SizedBox(height: 8),
+                          _buildInfoRow(Icons.access_time, 'ساعات الدعم', 'الأحد - الخميس، 9:00 - 17:00'),
+                          const SizedBox(height: 8),
+                          _buildInfoRow(Icons.email, 'البريد الإلكتروني', 'azzamsuleimanimportandexport@outlook.com'),
+                          const SizedBox(height: 12),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: OutlinedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TermsPage()));
+                                  },
+                                  child: const Text('شروط الخدمة'),
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: OutlinedButton(
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                        title: const Text('سياسة الخصوصية'),
+                                        content: SingleChildScrollView(
+                                          child: Text(_privacyPolicyText, textAlign: TextAlign.right),
+                                        ),
+                                        actions: [
+                                          TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('إغلاق')),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  child: const Text('سياسة الخصوصية'),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 24),
+                  const Text(
+                    'قيمنا',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF1A3A52),
+                    ),
+                    textAlign: TextAlign.right,
+                  ),
+                  const SizedBox(height: 12),
+                  _buildValueItem('الأمانة والثقة', Icons.verified),
+                  _buildValueItem('الجودة والاحترافية', Icons.star),
+                  _buildValueItem('الالتزام بالمواعيد', Icons.schedule),
+                  _buildValueItem('خدمة العملاء الممتازة', Icons.handshake),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
       ),
     );
-
   }
 
   Widget _buildValueItem(String value, IconData icon) {
@@ -374,6 +364,25 @@ class AboutPage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildInfoRow(IconData icon, String label, String value) {
+    return Row(
+      children: [
+        Icon(icon, color: const Color(0xFFD4A574), size: 20),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(label, style: const TextStyle(fontSize: 12, color: Colors.black54, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 4),
+              Text(value, style: const TextStyle(fontSize: 15, color: Colors.black87, fontWeight: FontWeight.w500)),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
@@ -522,8 +531,9 @@ class ContactPage extends StatelessWidget {
 
   Widget _buildContactInfo(IconData icon, String label, String value) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(vertical: 6), // Reduced padding
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start, // Align to top for multi-line
         children: [
           Icon(
             icon,
@@ -531,27 +541,29 @@ class ContactPage extends StatelessWidget {
             size: 28,
           ),
           const SizedBox(width: 16),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                label,
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: Colors.black54,
-                  fontWeight: FontWeight.bold,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: Colors.black54,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                value,
-                style: const TextStyle(
-                  fontSize: 15,
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w500,
+                const SizedBox(height: 4),
+                SelectableText(
+                  value,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    color: Colors.black87,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
